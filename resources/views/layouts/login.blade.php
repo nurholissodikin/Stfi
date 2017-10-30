@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      <title>STFI Bandung</title>
     <!-- Favicon-->
-    <link rel="icon" href="images/favicon.png" type="image/png">
+    <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/png">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
      
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->

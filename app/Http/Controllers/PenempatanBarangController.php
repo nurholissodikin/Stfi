@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\PenempatanBarang;
+use App\Vpenempatan;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use Session;
+use App\PenempatanBarang;
+
 
 class PenempatanBarangController extends Controller
 {
@@ -19,7 +21,7 @@ class PenempatanBarangController extends Controller
     {
         //
         if ($request->ajax()) {
-            $penempatanbarang = PenempatanBarang::with(['barangmasuk','tempat','staff']);
+            $penempatanbarang = Vpenempatan::all();
             return Datatables::of($penempatanbarang)
                 ->addColumn('action',function($penempatanbarang){
                     return view('datatable._action',[
@@ -32,11 +34,14 @@ class PenempatanBarangController extends Controller
         }
 
         $html = $htmlBuilder
-            ->addColumn(['data' => 'jumlah','name'=>'jumlah','title'=>'Jumlah'])
-            ->addColumn(['data' => 'tanggal','name'=>'tanggal','title'=>'Tanggal'])
-            ->addColumn(['data' => 'barangmasuk.id' , 'name' => 'barangmasuk.id' ,'title' => 'Barang Masuk'])
-            ->addColumn(['data' => 'tempat.nama' , 'name' => 'tempat.nama' ,'title' => 'Tempat'])
-            ->addColumn(['data' => 'staff.nama' , 'name' => 'staff.nama' ,'title' => 'Staff'])
+            ->addColumn(['data' => 'jumlahpenempatan','name'=>'jumlahpenempatan','title'=>'Jumlah'])
+            ->addColumn(['data' => 'tanggalpenempatanfmt','name'=>'tanggalpenempatanfmt','title'=>'Tanggal'])
+            ->addColumn(['data' => 'namatempat' , 'name' => 'namatempat' ,'title' =>'Tempat'])
+            ->addColumn(['data' => 'namastaff' , 'name' => 'namastaff' ,'title' =>'Staff'])
+            ->addColumn(['data' => 'namabarang' , 'name' => 'namabarang' ,'title' =>'Nama'])
+            ->addColumn(['data' => 'kodebarang' , 'name' => 'kodebarang' ,'title' =>'Kode'])
+            ->addColumn(['data' => 'namakategori' , 'name' => 'namakategori' ,'title' =>'Kategori'])
+
             ->addColumn(['data' => 'action' , 'name' => 'action' ,'title' => '','orderable'=>false,'searchable'=>false]);
 
         return view('penempatanbarang.index')->with(compact('html'));
@@ -62,6 +67,9 @@ class PenempatanBarangController extends Controller
     public function store(Request $request)
     {
         //
+        $barangmasuks =DB::select('SELECT *, id_barangmasuk from vbarangmasuks where id_barang = barangmasuk_id and jumlah-ifnull(total_keluar,0)>0');
+
+
         $this->validate($request, [
             'jumlah' => 'required|numeric',
             'tanggal' => 'required',

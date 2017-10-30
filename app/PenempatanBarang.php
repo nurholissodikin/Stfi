@@ -28,4 +28,6 @@ class PenempatanBarang extends Model
     {
         return $this->hasMany('App\PenyesuaianStok');
     }
+
+   
 }

@@ -15,7 +15,7 @@ class CreatePenyesuaianStoksTable extends Migration
     {
         Schema::create('penyesuaian_stoks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tanggal');
+            $table->date('tanggal');
             $table->integer('penempatanbarang_id')->unsigned();
             $table->integer('stok_penggunaan')->unsigned();
             $table->timestamps();

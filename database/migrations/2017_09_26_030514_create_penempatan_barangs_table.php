@@ -16,7 +16,7 @@ class CreatePenempatanBarangsTable extends Migration
         Schema::create('penempatan_barangs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('jumlah');
-            $table->string('tanggal');
+            $table->date('tanggal');
             $table->integer('barangmasuk_id')->unsigned();
             $table->integer('tempat_id')->unsigned();
             $table->integer('staff_id')->unsigned();

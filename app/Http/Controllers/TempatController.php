@@ -61,7 +61,7 @@ class TempatController extends Controller
         //
         $this->validate($request, [
             'nama' => 'required|unique:tempats',
-            'kode' => 'required|unique:tempats'
+            'kode' => 'required'
             ]);
         $tempat = Tempat::create($request->all());
         Session::flash("flash_notification", [

@@ -20,7 +20,7 @@ class CreateBarangMasuksTable extends Migration
             $table->string('merk');
             $table->string('kondisi');
             $table->string('suppliyer');
-            $table->string('tanggal');
+            $table->date('tanggal');
             $table->integer('barang_id')->unsigned();
             $table->integer('staff_id')->unsigned();
             $table->timestamps();

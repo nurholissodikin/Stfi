@@ -7,6 +7,7 @@ use App\PenyesuaianStok;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use Session;
+use App\PenempatanBarang;
 
 class PenyesuaianStokController extends Controller
 {

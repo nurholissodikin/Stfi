@@ -16,8 +16,13 @@
 						 <table class="table">
                 <thead>
                 	<tr>
-                		<th>Nama barang</th>
-                		<th>total</th>
+                		<th>Tanggal Penempatan</th>
+                		<th>Jumlah</th>
+                		<th>Nama Tempat</th>
+                		<th>Nama Staff</th>
+                		<th>Nama Barang</th>
+                		<th>Kode Barang</th>
+                		<th>Nama Kategori</th>
                 		<th colspan="2">Action</th>
                 	</tr>
                 </thead>
@@ -25,8 +30,13 @@
                 	<tbody>
                 		@foreach($a as $data)
                 		<tr>
-                			<td>{{$data->barangmasuk_id}}</td>
-                			<td>{{$data->total_keluar}}</td>                				
+                			<td>{{$data->tanggalpenempatanfmt}}</td>
+                			<td>{{$data->jumlahpenempatan}}</td>
+                			<td>{{$data->namatempat}}</td>                				
+                			<td>{{$data->namastaff}}</td>
+                			<td>{{$data->namabarang}}</td>
+                			<td>{{$data->kodebarang}}</td>
+                			<td>{{$data->namakategori}}</td>
                 				@endforeach
                 			
                 		</tr>

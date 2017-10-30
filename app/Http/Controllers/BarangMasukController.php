@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\BarangMasuk;
+use App\PenempatanBarang;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use Session;
+use App\Vbarangmasuk;
 
 class BarangMasukController extends Controller
 {
@@ -19,7 +21,7 @@ class BarangMasukController extends Controller
     {
         //
         if ($request->ajax()) {
-            $barangmasuk = BarangMasuk::with(['barang','staff']);
+            $barangmasuk = Vbarangmasuk::all();
             return Datatables::of($barangmasuk)
                 ->addColumn('action',function($barangmasuk){
                     return view('datatable._action',[
@@ -32,15 +34,16 @@ class BarangMasukController extends Controller
         }
 
         $html = $htmlBuilder
-
-            ->addColumn(['data' => 'barang.nama' , 'name' => 'barang.nama' ,'title' => 'Barang'])
+            ->addColumn(['data' => 'namabarang' , 'name' => 'namabarang' ,'title' => 'Barang'])
             ->addColumn(['data' => 'jumlah','name'=>'jumlah','title'=>'Jumlah'])
             ->addColumn(['data' => 'harga','name'=>'harga','title'=>'Harga'])
             ->addColumn(['data' => 'merk' , 'name' => 'merk' ,'title' => 'Merk'])
             ->addColumn(['data' => 'kondisi','name'=>'kondisi','title'=>'Kondisi'])
             ->addColumn(['data' => 'suppliyer','name'=>'suppliyer','title'=>'Suppliyer'])
-            ->addColumn(['data' => 'tanggal','name'=>'tanggal','title'=>'Tanggal'])
-            ->addColumn(['data' => 'staff.nama' , 'name' => 'staff.nama' ,'title' => 'Staff'])
+            ->addColumn(['data' => 'tanggalbarangmasukfmt','name'=>'tanggalbarangmasukfmt','title'=>'Tanggal'])
+            ->addColumn(['data' => 'namastaff' , 'name' => 'namastaff' ,'title' => 'Staff'])
+            ->addColumn(['data' => 'total_keluar' , 'name' => 'total_keluar' ,'title' => 'Total'])
+            ->addColumn(['data' => 'saldo' , 'name' => 'saldo' ,'title' => 'Sisa'])
             ->addColumn(['data' => 'action' , 'name' => 'action' ,'title' => '','orderable'=>false,'searchable'=>false]);
 
         return view('barangmasuk.index')->with(compact('html'));

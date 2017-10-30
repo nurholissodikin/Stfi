@@ -10,13 +10,13 @@
     <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/jquery.dataTables.css')}}" rel="stylesheet">
     <link href="{{asset('css/dataTables.bootstrap.css')}}" rel="stylesheet">
-       <link href="{{ asset('css/bootstrap-material-datetimepicker.css') }}" rel="stylesheet">
+     
        <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      <title>STFI Bandung</title>
     <!-- Favicon-->
-    <link rel="icon" href="images/favicon.png" type="image/png">
+    <link rel="icon" href="{{ asset('images/favicon.png')}}" type="image/png">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
       
 
@@ -41,7 +41,7 @@
               <!--Notification Menu-->
              
               <!-- User Menu-->
-              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-lg"></i></a>
+              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle fa-lg"></i></a>
                 <ul class="dropdown-menu settings-menu">
                   <li><a href="{{ url('/settings/password') }}"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
                   <li><a href="{{ url('/settings/profile') }}"><i class="fa fa-user fa-lg"></i> Profile</a></li>
@@ -75,20 +75,13 @@
           <!-- Sidebar Menu-->
           <ul class="sidebar-menu">
             <li class="active"><a href="{{ url('/home') }}"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
-         
-          
-            <li class="treeview"><a href="#"><i class="fa fa-th-list"></i><span>Tables</span><i class="fa fa-angle-right"></i></a>
-              <ul class="treeview-menu">
-                <li><a href="{{route('staff.index')}}"><i class="fa fa-circle-o"></i> Staff</a></li>
-                <li><a href="{{route('kategori.index')}}"><i class="fa fa-circle-o"></i> Kategori</a></li>
-                <li><a href="{{route('tempat.index')}}"><i class="fa fa-circle-o"></i> Tempat</a></li>
-                <li><a href="{{route('barang.index')}}"><i class="fa fa-circle-o"></i> Barang</a></li>
-                <li><a href="{{route('barangmasuk.index')}}"><i class="fa fa-circle-o"></i> Barang Masuk</a></li>
-                <li><a href="{{route('penempatanbarang.index')}}"><i class="fa fa-circle-o"></i> Penempatan Barang</a></li>
-                <li><a href="{{route('penyesuaianstok.index')}}"><i class="fa fa-circle-o"></i> Penyesuaian Stok</a></li>
-              </ul>
-            </li>
-          
+            <li><a href="{{route('staff.index')}}"><i class="fa fa-user"></i><span>Staff</span></a></li>
+            <li><a href="{{route('kategori.index')}}"><i class="fa fa-cubes"></i><span>Kategori</span></a></li>
+            <li><a href="{{route('tempat.index')}}"><i class="fa fa-map-marker"></i><span>Tempat</span></a></li>
+            <li><a href="{{route('barang.index')}}"><i class="fa fa-briefcase"></i><span>Barang</span></a></li>
+            <li><a href="{{route('barangmasuk.index')}}"><i class="fa fa-mail-reply"></i><span>Barang Masuk</span></a></li>
+            <li><a href="{{route('penempatanbarang.index')}}"><i class="fa fa-mail-forward"></i><span>Penempatan Barang</span></a></li>
+            <li><a href="{{route('penyesuaianstok.index')}}"><i class="fa fa-database"></i><span>Penyesuaian Stok</span></a></li>
           </ul>
         </section>
       </aside>
@@ -127,7 +120,7 @@
     <script type="text/javascript" src="{{ asset('js/plugins/bootstrap-datepicker.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/plugins/select2.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/plugins/bootstrap-datepicker.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/bootstrap-material-datetimepicker.js') }}"></script>
+  
     <script src="{{ asset('table/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('table/js/dataTables.bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset ('js/plugins/bootstrap-notify.min.js') }}"></script>
@@ -139,7 +132,7 @@
     <script type="text/javascript">
      $(function () {
     $('#datetimepicker2').datetimepicker({
-        format: 'YYYY-MM-DD h:m:s A',
+        format: 'YYYY-MM-DD',
       });
   });
       $('#sl').click(function(){
@@ -162,16 +155,6 @@
        $('#demoSelecte').select2();
         $('#demoSelected').select2();
 
-
-       $('#date-fr').bootstrapMaterialDatePicker
-      ({
-        format: 'DD/MM/YYYY HH:mm',
-        lang: 'fr',
-        weekStart: 1, 
-        cancelText : 'ANNULER',
-        nowButton : true,
-        switchOnClick : true
-      });
       $('#demoSwal').click(function(){
         swal({
           title: "Are you sure?",
@@ -191,9 +174,7 @@
         });
       });
     </script>
-    <script type="text/javascript">$('body').removeClass("sidebar-mini").addClass("sidebar-collapse");</script>
-    
-    </script>
+   
      @yield('scripts')
   </body>
 </html>
