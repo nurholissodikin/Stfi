@@ -26,14 +26,15 @@ class BarangMasukController extends Controller
                 ->addColumn('action',function($barangmasuk){
                     return view('datatable._action',[
                         'model'    => $barangmasuk,
-                        'form_url' => route('barangmasuk.destroy',$barangmasuk->id),
-                        'edit_url' => route('barangmasuk.edit',$barangmasuk->id),
+                        'form_url' => route('barangmasuk.destroy',$barangmasuk->id_barangmasuk),
+                        'edit_url' => route('barangmasuk.edit',$barangmasuk->id_barangmasuk),
                         'confirm_message' => 'Yakin Mau Menghapus '.$barangmasuk->merk . '?'
                     ]);
                 })->make(true);
         }
 
         $html = $htmlBuilder
+            ->addColumn(['data' => 'id_barangmasuk' , 'name' => 'id_barangmasuk' ,'title' => 'ID'])
             ->addColumn(['data' => 'namabarang' , 'name' => 'namabarang' ,'title' => 'Barang'])
             ->addColumn(['data' => 'jumlah','name'=>'jumlah','title'=>'Jumlah'])
             ->addColumn(['data' => 'harga','name'=>'harga','title'=>'Harga'])

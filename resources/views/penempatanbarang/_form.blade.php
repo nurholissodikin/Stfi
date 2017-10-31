@@ -18,11 +18,11 @@
 	</div>
 </div>
 
-<div class="form-group{{ $errors->has('barangmasuk_id') ? 'has-error' : '' }}">
+<div class="form-group{{ $errors->has('barang_id') ? 'has-error' : '' }}">
 	<label>Barang Masuk</label>
 	<div class="form-line">
-		{!! Form::select('barangmasuk_id', App\Barang::pluck('nama','id')->all(),null,['class'=>'form-control','id'=>'demoSelect','placeholder'=>'-------------------------------------------------------------------------------------Pilih Barang !-------------------------------------------------------------------------------']) !!}
-		{!! $errors->first('barangmasuk_id','<p class="help-block">:message</p>') !!}
+		{!! Form::select('barang_id', App\Barang::pluck('nama','id')->all(),null,['class'=>'form-control','id'=>'demoSelect','placeholder'=>'-------------------------------------------------------------------------------------Pilih Barang !-------------------------------------------------------------------------------']) !!}
+		{!! $errors->first('barang_id','<p class="help-block">:message</p>') !!}
 	</div>
 </div>
 

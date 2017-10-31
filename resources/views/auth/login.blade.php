@@ -1,13 +1,9 @@
 @extends('layouts.login')
 
 @section('content')
-<section class="material-half-bg">
-      <div class="cover"></div>
-    </section>
+
     <section class="login-content">
-      <div class="logo">
-        <h1>Stfi</h1>
-      </div>
+        <h1>APLIKASI INVENTARIS</h1><br>
       <div class="login-box">
        {!! Form::open(['url'=>'login', 'class'=>'login-form']) !!}
        

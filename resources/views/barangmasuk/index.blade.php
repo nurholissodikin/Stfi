@@ -10,7 +10,7 @@
 					<div class="panel-heading">
 						<div class="panel-title">Barang Masuk<a class="pull-right" href="{{ route('barangmasuk.create') }}">Tambah</a>
 					</div>
-</div>
+				</div>
 					<div class="panel-body">
 						
 						{!! $html->table(['class'=>'table-striped']) !!}

@@ -8,6 +8,8 @@ use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use Session;
 use App\PenempatanBarang;
+use App\Vbarangmasuk;
+use DB;
 
 
 class PenempatanBarangController extends Controller
@@ -67,22 +69,65 @@ class PenempatanBarangController extends Controller
     public function store(Request $request)
     {
         //
-        $barangmasuks =DB::select('SELECT *, id_barangmasuk from vbarangmasuks where id_barang = barangmasuk_id and jumlah-ifnull(total_keluar,0)>0');
+        // $barangmasuks = DB::select('SELECT *, id_barangmasuk from vbarangmasuks where id_barang = barangmasuk_id and jumlah-ifnull(total_keluar,0)>0');
+        $barang_id = $request->input('barang_id');
+
+        $jumlah = $request->input('jumlah');
+
+        $tanggal = $request->input('tanggal');
+
+        $tempat_id = $request->input('tempat_id');
+
+        $staff_id = $request->input('staff_id');
 
 
-        $this->validate($request, [
-            'jumlah' => 'required|numeric',
-            'tanggal' => 'required',
-            'barangmasuk_id' => 'required|exists:barang_masuks,id',
-            'tempat_id' => 'required|exists:tempats,id',
-            'staff_id' => 'required|exists:staff,id'
-            ]);
-        $penempatanbarang = PenempatanBarang::create($request->all());
-        Session::flash("flash_notification", [
+
+        $databarangmasuk = DB::select('select * from vbarangmasuks where id_barang = '.$barang_id.' and saldo > 0');
+        $totsaldo = 0;
+        foreach ($databarangmasuk as $data ) {
+            $totsaldo = $totsaldo + $data -> saldo;
+
+        }
+        if ($totsaldo >= $jumlah) { 
+            foreach($databarangmasuk as $data){
+                if ($jumlah>0) {
+            
+        
+                    if($data->saldo>$jumlah){
+                        $penempatanbarang = PenempatanBarang::create(['jumlah' => $jumlah,'tanggal' => $tanggal, 'barangmasuk_id' => $data->id_barangmasuk , 'tempat_id' => $tempat_id , 'staff_id' => $staff_id ]);
+                    } else 
+                    {
+                        $penempatanbarang = PenempatanBarang::create(['jumlah' => $data->saldo,'tanggal' => $tanggal, 'barangmasuk_id' => $data->id_barangmasuk , 'tempat_id' => $tempat_id , 'staff_id' => $staff_id ]);
+                    }
+                    $jumlah = $jumlah - $data->saldo;
+
+                }
+             }
+             Session::flash("flash_notification", [
             "level"=>"info",
-            "message"=>"Berhasil menyimpan $penempatanbarang->id "
+            "message"=>"Data Berhasil di Simpan  "
             ]);
-        return redirect()->route('penempatanbarang.index');
+            
+        }   else {
+
+            Session::flash("flash_notification", [
+            "level"=>"danger",
+            "message"=>"Saldo Kurang dari Jumlah  "
+            ]);
+
+        }
+        
+return redirect()->route('penempatanbarang.index');
+        // $this->validate($request, [
+        //     'jumlah' => 'required|numeric',
+        //     'tanggal' => 'required',
+        //     'barang_id' => 'required|exists:barangs,id',
+        //     'tempat_id' => 'required|exists:tempats,id',
+        //     'staff_id' => 'required|exists:staff,id'
+        //     ]);
+        // $penempatanbarang = PenempatanBarang::create($request->all());
+        
+        
     }
 
     /**

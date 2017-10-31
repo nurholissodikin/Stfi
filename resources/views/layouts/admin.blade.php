@@ -14,9 +14,9 @@
        <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-     <title>STFI Bandung</title>
+     <title>Aplikasi Inventaris</title>
     <!-- Favicon-->
-    <link rel="icon" href="{{ asset('images/favicon.png')}}" type="image/png">
+    <link rel="icon" href="{{ asset('images/icon.png')}}" type="image/png">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
       
 
@@ -32,7 +32,7 @@
   <body class="sidebar-mini fixed">
     <div class="wrapper">
       <!-- Navbar-->
-      <header class="main-header hidden-print"> <a class="logo" href="{{ url('/home') }}"><small>Farmasi Indonesia</small></a>
+      <header class="main-header hidden-print"> <a class="logo" href="{{ url('/') }}"><small>Farmasi Indonesia</small></a>
         <nav class="navbar navbar-static-top">
           <!-- Sidebar toggle button--><a class="sidebar-toggle" href="#" data-toggle="offcanvas"></a>
           <!-- Navbar Right Menu-->
@@ -43,7 +43,6 @@
               <!-- User Menu-->
               <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle fa-lg"></i></a>
                 <ul class="dropdown-menu settings-menu">
-                  <li><a href="{{ url('/settings/password') }}"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
                   <li><a href="{{ url('/settings/profile') }}"><i class="fa fa-user fa-lg"></i> Profile</a></li>
                   <li> 
                  <a href="{{ route('logout') }}"  class="btn btn-default btn-flat"
@@ -66,7 +65,7 @@
       <aside class="main-sidebar hidden-print">
         <section class="sidebar">
           <div class="user-panel">
-            <div class="pull-left image"><img class="img-circle" src="{{asset('img/a.png')}}" alt="User Image"></div>
+            <div class="pull-left image"><img class="img-circle" src="{{asset('img/avatar5.png')}}" alt="User Image"></div>
             <div class="pull-left info">
               <p>{{ Auth::user()->name }}</p>
               <p class="designation">Frontend Developer</p>
@@ -74,7 +73,7 @@
           </div>
           <!-- Sidebar Menu-->
           <ul class="sidebar-menu">
-            <li class="active"><a href="{{ url('/home') }}"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
+            <li class="active"><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
             <li><a href="{{route('staff.index')}}"><i class="fa fa-user"></i><span>Staff</span></a></li>
             <li><a href="{{route('kategori.index')}}"><i class="fa fa-cubes"></i><span>Kategori</span></a></li>
             <li><a href="{{route('tempat.index')}}"><i class="fa fa-map-marker"></i><span>Tempat</span></a></li>
@@ -94,7 +93,7 @@
           <div>
             <ul class="breadcrumb">
               <li><i class="fa fa-home fa-lg"></i></li>
-              <li><a href="{{ url('/home') }}">Dashboard</a></li>
+              <li><a href="{{ url('/') }}">Dashboard</a></li>
             </ul>
           </div>
         </div>
